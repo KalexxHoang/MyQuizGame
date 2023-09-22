@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.SignUpFragment">
+
+    <LinearLayout
+        android:id="@+id/quiz_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/background">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_back"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/txt_quiz_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginLeft="20dp"
+
+            android:text="@string/app_name"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+
+            android:drawablePadding="15dp"
+            android:background="@color/background"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/quiz_layout"
+        app:srcCompat="@drawable/sign_up"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sign_up_email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/img_sign_up"
+        android:layout_marginTop="5dp"
+
+        android:hint="@string/email"
+        app:startIconDrawable="@drawable/icon_email"
+        app:endIconMode="clear_text"
+        app:boxStrokeColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="15dp"
+            android:inputType="textEmailAddress"
+
+            android:padding="15dp"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sign_up_password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/sign_up_email"
+        android:layout_marginTop="15dp"
+
+        android:hint="@string/password"
+        app:startIconDrawable="@drawable/icon_lock"
+        app:endIconMode="password_toggle"
+        app:boxStrokeColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:drawablePadding="15dp"
+            android:drawableRight="@drawable/icon_eye"
+            android:inputType="textPassword"
+
+            android:padding="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_sign_up"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+
+        android:layout_below="@id/sign_up_password"
+        android:layout_marginTop="230dp"
+        android:background="@drawable/btn_signup"
+        android:text="@string/signup"
+        android:textColor="@android:color/white"
+
+        android:textSize="17dp"
+        android:textStyle="bold" />
+</RelativeLayout>
