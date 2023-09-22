@@ -26,6 +26,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment() {
     private lateinit var loginBinding: FragmentLoginBinding
@@ -124,12 +126,18 @@ class LoginFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
+                loginQuizViewModel.setEmail(getCurrentEmail())
+
                 val homeFragment = HomeFragment()
                 switchFragment(homeFragment)
             } else {
                 Toast.makeText(activity, it.exception.toString(), Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun getCurrentEmail(): String {
+        return Firebase.auth.currentUser?.email.toString()
     }
 
     /**************************************

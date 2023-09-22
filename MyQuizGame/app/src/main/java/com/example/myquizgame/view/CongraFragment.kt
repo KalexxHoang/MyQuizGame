@@ -78,7 +78,7 @@ class CongraFragment : Fragment() {
     private fun putResult() {
         dataBase = FirebaseDatabase.getInstance().getReference("Result")
 
-        val email = Firebase.auth.currentUser?.email.toString()
+        val email = congraQuizViewModel.getEmail().value
         val scoreID = dataBase.push().key!!
 
         dataBase.child(scoreID).setValue(Score(scoreID, email, correctAnswer, wrongAnswer))
