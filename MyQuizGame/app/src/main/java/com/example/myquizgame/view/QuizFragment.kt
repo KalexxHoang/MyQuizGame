@@ -216,8 +216,7 @@ class QuizFragment : Fragment() {
 
         alertDialog.setNegativeButton("PLAY AGAIN") {
                 dialog, which ->
-            index = 0
-            showQues()
+            playAgain()
         }
 
         alertDialog.setPositiveButton("SEE RESULT") {
@@ -226,6 +225,14 @@ class QuizFragment : Fragment() {
         }
 
         alertDialog.show()
+    }
+
+    private fun playAgain() {
+        index = 0
+        wrongAns = 0
+        correctAns = 0
+        defaultBackground()
+        showQues()
     }
 
     private fun passResult() {
