@@ -1,4 +1,4 @@
-package com.example.myquizgame.view
+package com.example.myquizgame.view.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.FragmentHomeBinding
+import com.example.myquizgame.view.quiz.QuizFragment
 
 class HomeFragment : Fragment() {
     private lateinit var homeBinding: FragmentHomeBinding

@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context=".view.QuizFragment">
+    tools:context=".view.quiz.QuizFragment">
 
     <ProgressBar
         android:id="@+id/progress"

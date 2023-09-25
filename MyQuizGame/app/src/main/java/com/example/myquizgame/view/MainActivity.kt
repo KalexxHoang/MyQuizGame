@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.ActivityMainBinding
+import com.example.myquizgame.view.login.SplashFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainTransaction: FragmentTransaction

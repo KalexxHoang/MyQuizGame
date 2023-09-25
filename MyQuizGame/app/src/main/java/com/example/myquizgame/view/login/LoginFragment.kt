@@ -1,4 +1,4 @@
-package com.example.myquizgame.view
+package com.example.myquizgame.view.login
 
 import android.app.Activity
 import android.graphics.Color
@@ -18,7 +18,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.mock_mvvm.data.model.User
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.FragmentLoginBinding
-import com.example.myquizgame.view_model.QuizViewModel
+import com.example.myquizgame.view_model.quiz_view_model.QuizViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

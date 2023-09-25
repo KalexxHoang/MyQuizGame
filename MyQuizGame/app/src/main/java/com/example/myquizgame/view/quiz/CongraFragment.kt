@@ -1,4 +1,4 @@
-package com.example.myquizgame.view
+package com.example.myquizgame.view.quiz
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,11 +11,10 @@ import androidx.fragment.app.activityViewModels
 import com.example.mock_mvvm.data.model.Score
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.FragmentCongraBinding
-import com.example.myquizgame.view_model.QuizViewModel
-import com.google.firebase.auth.ktx.auth
+import com.example.myquizgame.view.login.HomeFragment
+import com.example.myquizgame.view_model.quiz_view_model.QuizViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 
 class CongraFragment : Fragment() {
     private lateinit var congraBinding: FragmentCongraBinding

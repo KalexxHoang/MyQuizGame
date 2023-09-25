@@ -1,4 +1,4 @@
-package com.example.myquizgame.view
+package com.example.myquizgame.view.quiz
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -16,8 +16,8 @@ import androidx.lifecycle.Observer
 import com.example.mock_mvvm.data.model.Question
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.FragmentQuizBinding
-import com.example.myquizgame.view_model.QuizViewModel
-import com.google.firebase.database.DatabaseReference
+import com.example.myquizgame.view.login.HomeFragment
+import com.example.myquizgame.view_model.quiz_view_model.QuizViewModel
 
 class QuizFragment : Fragment() {
     private lateinit var quizBinding: FragmentQuizBinding

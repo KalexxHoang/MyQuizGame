@@ -1,4 +1,4 @@
-package com.example.myquizgame.view
+package com.example.myquizgame.view.login
 
 import android.os.Bundle
 import android.os.Handler
