@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         mainTransaction = supportFragmentManager.beginTransaction()
 
         // Add SplashFragment
-        /*val splashFragment = SplashFragment()
-        mainTransaction.replace(R.id.container, splashFragment).addToBackStack(null).commit()*/
+        val splashFragment = SplashFragment()
+        mainTransaction.replace(R.id.container, splashFragment).addToBackStack(null).commit()
 
-        val rankFragment = RankFragment()
-        mainTransaction.replace(R.id.container, rankFragment).addToBackStack(null).commit()
+        /*val rankFragment = RankFragment()
+        mainTransaction.replace(R.id.container, rankFragment).addToBackStack(null).commit()*/
     }
 }

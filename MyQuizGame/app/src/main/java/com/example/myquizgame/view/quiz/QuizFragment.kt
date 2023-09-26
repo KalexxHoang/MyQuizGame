@@ -77,6 +77,9 @@ class QuizFragment : Fragment() {
             if (index < questionList.size - 1) {
                 clickNext()
             } else {
+                if (clickState == 0)
+                    wrongAns++
+                stateQuiz()
                 showDialog()
             }
         }
