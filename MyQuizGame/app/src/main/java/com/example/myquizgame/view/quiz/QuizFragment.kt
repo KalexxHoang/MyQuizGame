@@ -21,11 +21,13 @@ import com.example.myquizgame.view.MainActivity
 import com.example.myquizgame.view.login.HomeFragment
 import com.example.myquizgame.view_model.quiz_view_model.QuizViewModel
 import com.example.myquizgame.view_model.quiz_view_model.QuizViewModelService
+import com.example.myquizgame.view_model.score_view_model.ScoreViewModel
+import com.example.myquizgame.view_model.score_view_model.ScoreViewModelService
 
 class QuizFragment : Fragment() {
     private lateinit var quizBinding: FragmentQuizBinding
     private lateinit var quizViewModel: QuizViewModelService
-//    private val quizViewModel: QuizViewModel by activityViewModels()
+    private lateinit var scoreViewModel: ScoreViewModelService
 
     private lateinit var quizTransaction: FragmentTransaction
     private lateinit var questionList: ArrayList<Question>
@@ -42,6 +44,7 @@ class QuizFragment : Fragment() {
         quizBinding = FragmentQuizBinding.inflate(layoutInflater)
 
         quizViewModel = ViewModelProvider(requireActivity())[QuizViewModel::class.java]
+        scoreViewModel = ViewModelProvider(requireActivity())[ScoreViewModel::class.java]
 
         // Inflate the layout for this fragment
         return quizBinding.root
@@ -242,7 +245,7 @@ class QuizFragment : Fragment() {
     }
 
     private fun passResult() {
-        quizViewModel.setScore(correctAns, wrongAns)
+        scoreViewModel.setScore(correctAns, wrongAns)
 
         val congraFragment = CongraFragment()
         switchFragment(congraFragment)

@@ -8,28 +8,32 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.mock_mvvm.data.model.Score
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.FragmentCongraBinding
 import com.example.myquizgame.view.login.HomeFragment
 import com.example.myquizgame.view_model.quiz_view_model.QuizViewModel
+import com.example.myquizgame.view_model.score_view_model.ScoreViewModel
+import com.example.myquizgame.view_model.score_view_model.ScoreViewModelService
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class CongraFragment : Fragment() {
     private lateinit var congraBinding: FragmentCongraBinding
-    private val congraQuizViewModel: QuizViewModel by activityViewModels()
+    private lateinit var congraScoreViewModel: ScoreViewModelService
 
     private lateinit var congraTransaction: FragmentTransaction
     private lateinit var dataBase: DatabaseReference
-    private var correctAnswer: Int? = 0
-    private var wrongAnswer: Int? = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         congraBinding = FragmentCongraBinding.inflate(layoutInflater)
+
+        congraScoreViewModel = ViewModelProvider(requireActivity())[ScoreViewModel::class.java]
 
         // Inflate the layout for this fragment
         return congraBinding.root
@@ -48,15 +52,18 @@ class CongraFragment : Fragment() {
         congraBinding.btnPlayAgain.setOnClickListener {
             switchToQuiz()
         }
+
+        congraBinding.btnRank.setOnClickListener {
+            putResult()
+            switchToRank()
+        }
     }
 
     private fun setScore() {
-        correctAnswer = congraQuizViewModel.getCorrectAns().value
-        wrongAnswer = congraQuizViewModel.getWrongAns().value
-
-        congraBinding.correctAns.text = "Correct Answer:     $correctAnswer"
-        congraBinding.wrongAns.text = "Wrong Answer:     $wrongAnswer"
-
+        congraScoreViewModel.getResult().observe(viewLifecycleOwner, Observer {
+                    congraBinding.correctAns.text = "Correct Answer:     ${it.correctAns}"
+                    congraBinding.wrongAns.text = "Wrong Answer:     ${it.wrongAns}"
+        })
     }
 
     private fun switchFragment(fragment: Fragment) {
@@ -74,13 +81,17 @@ class CongraFragment : Fragment() {
         switchFragment(quizFragment)
     }
 
+    private fun switchToRank() {
+        val rankFragment = RankFragment()
+        switchFragment(rankFragment)
+    }
+
     private fun putResult() {
-        dataBase = FirebaseDatabase.getInstance().getReference("Result")
-
-        val email = congraQuizViewModel.getEmail().value
+        dataBase = FirebaseDatabase.getInstance().getReference("Score")
         val scoreID = dataBase.push().key!!
+        val userResult = congraScoreViewModel.getResult().value
 
-        dataBase.child(scoreID).setValue(Score(scoreID, email, correctAnswer, wrongAnswer))
+        dataBase.child(scoreID).setValue(Score(scoreID, userResult))
             .addOnCompleteListener {
                 Toast.makeText(activity, "Add successful", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {

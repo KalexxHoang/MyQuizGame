@@ -4,16 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mock_mvvm.data.model.Question
+import com.example.mock_mvvm.data.model.Score
+import com.example.myquizgame.data.model.UserResult
 import com.example.myquizgame.data.repository.data_repository.DataRepository
+import com.example.myquizgame.data.repository.data_repository.RepositoryService
 
 class QuizViewModel(): ViewModel(), QuizViewModelService {
     private val questionList = MutableLiveData<ArrayList<Question>>()
-    private val dataRepository = DataRepository(this)
-
-    private val email = MutableLiveData<String>()
-
-    private val correctAns = MutableLiveData<Int>()
-    private val wrongAns = MutableLiveData<Int>()
+    private val dataRepository: RepositoryService = DataRepository(this)
 
     init {
         dataRepository.getQuestions()
@@ -24,18 +22,4 @@ class QuizViewModel(): ViewModel(), QuizViewModelService {
     }
 
     override fun getQuestionList(): LiveData<ArrayList<Question>> = questionList
-
-    override fun setEmail(email: String) {
-        this.email.value = email
-    }
-
-    override fun getEmail(): LiveData<String> = email
-
-    override fun setScore(correctAns: Int, wrongAns: Int) {
-        this.correctAns.value = correctAns
-        this.wrongAns.value = wrongAns
-    }
-
-    override fun getCorrectAns(): LiveData<Int> = correctAns
-    override fun getWrongAns(): LiveData<Int> = wrongAns
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.ActivityMainBinding
 import com.example.myquizgame.view.login.SplashFragment
+import com.example.myquizgame.view.quiz.RankFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainTransaction: FragmentTransaction
@@ -20,7 +21,10 @@ class MainActivity : AppCompatActivity() {
         mainTransaction = supportFragmentManager.beginTransaction()
 
         // Add SplashFragment
-        val splashFragment = SplashFragment()
-        mainTransaction.replace(R.id.container, splashFragment).addToBackStack(null).commit()
+        /*val splashFragment = SplashFragment()
+        mainTransaction.replace(R.id.container, splashFragment).addToBackStack(null).commit()*/
+
+        val rankFragment = RankFragment()
+        mainTransaction.replace(R.id.container, rankFragment).addToBackStack(null).commit()
     }
 }

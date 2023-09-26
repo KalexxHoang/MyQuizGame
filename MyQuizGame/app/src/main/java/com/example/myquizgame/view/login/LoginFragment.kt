@@ -15,10 +15,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.mock_mvvm.data.model.User
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.FragmentLoginBinding
 import com.example.myquizgame.view_model.quiz_view_model.QuizViewModel
+import com.example.myquizgame.view_model.score_view_model.ScoreViewModel
+import com.example.myquizgame.view_model.score_view_model.ScoreViewModelService
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -34,13 +37,15 @@ class LoginFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var loginTransaction: FragmentTransaction
-    private val loginQuizViewModel: QuizViewModel by activityViewModels()
+    private lateinit var loginScoreViewModel: ScoreViewModelService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         loginBinding = FragmentLoginBinding.inflate(layoutInflater)
+
+        loginScoreViewModel = ViewModelProvider(requireActivity())[ScoreViewModel::class.java]
 
         /**************************************
          *               Sign in              *
@@ -89,7 +94,7 @@ class LoginFragment : Fragment() {
 
     private fun login(user: User) {
         if (user.isValidEmail() && user.isValidPassword()) {
-            loginQuizViewModel.setEmail(user.email)
+            loginScoreViewModel.setEmail(user.email)
             val homeFragment = HomeFragment()
             switchFragment(homeFragment)
         } else
@@ -126,7 +131,7 @@ class LoginFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                loginQuizViewModel.setEmail(getCurrentEmail())
+                loginScoreViewModel.setEmail(getCurrentEmail())
 
                 val homeFragment = HomeFragment()
                 switchFragment(homeFragment)
