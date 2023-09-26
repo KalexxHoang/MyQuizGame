@@ -13,15 +13,19 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.mock_mvvm.data.model.Question
 import com.example.myquizgame.R
 import com.example.myquizgame.databinding.FragmentQuizBinding
+import com.example.myquizgame.view.MainActivity
 import com.example.myquizgame.view.login.HomeFragment
 import com.example.myquizgame.view_model.quiz_view_model.QuizViewModel
+import com.example.myquizgame.view_model.quiz_view_model.QuizViewModelService
 
 class QuizFragment : Fragment() {
     private lateinit var quizBinding: FragmentQuizBinding
-    private val quizViewModel: QuizViewModel by activityViewModels()
+    private lateinit var quizViewModel: QuizViewModelService
+//    private val quizViewModel: QuizViewModel by activityViewModels()
 
     private lateinit var quizTransaction: FragmentTransaction
     private lateinit var questionList: ArrayList<Question>
@@ -36,6 +40,8 @@ class QuizFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         quizBinding = FragmentQuizBinding.inflate(layoutInflater)
+
+        quizViewModel = ViewModelProvider(requireActivity())[QuizViewModel::class.java]
 
         // Inflate the layout for this fragment
         return quizBinding.root

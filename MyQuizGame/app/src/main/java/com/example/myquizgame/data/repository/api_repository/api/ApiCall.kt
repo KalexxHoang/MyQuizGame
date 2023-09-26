@@ -1,4 +1,4 @@
-package com.example.myquizgame.data.api
+package com.example.myquizgame.data.repository.api_repository.api
 
 import android.content.Context
 import android.widget.Toast

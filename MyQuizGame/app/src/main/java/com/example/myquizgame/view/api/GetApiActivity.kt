@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.example.myquizgame.R
-import com.example.myquizgame.data.api.ApiCall
+import com.example.myquizgame.data.repository.api_repository.api.ApiCall
 import com.example.myquizgame.databinding.ActivityGetApiBinding
 import com.example.myquizgame.view_model.api_view_model.ApiViewModel
 

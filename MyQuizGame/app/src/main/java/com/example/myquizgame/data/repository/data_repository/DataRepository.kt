@@ -14,13 +14,12 @@ class DataRepository(private val quizViewModel: QuizViewModel): RepositoryServic
 
     override fun getQuestions() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Questions")
-        questionList = arrayListOf()
-
+        questionList = arrayListOf<Question>()
         databaseReference.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 questionList.clear()
                 if (snapshot.exists()) {
-                    val questionList = arrayListOf<Question>()
+
                     for (quesSnap in snapshot.children) {
                         val question = quesSnap.getValue(Question::class.java)
                         questionList.add(question!!)
