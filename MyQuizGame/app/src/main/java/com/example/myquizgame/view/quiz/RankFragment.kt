@@ -1,6 +1,7 @@
 package com.example.myquizgame.view.quiz
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.ArrayAdapter
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.myquizgame.R
@@ -29,6 +31,8 @@ class RankFragment : Fragment() {
     ): View? {
         rankBinding = FragmentRankBinding.inflate(layoutInflater)
         rankScoreViewModel = ViewModelProvider(requireActivity())[ScoreViewModel::class.java]
+
+        Log.e("AAAAAAAAAAAAAA", "onCreateView2: $rankScoreViewModel")
 
         // Inflate the layout for this fragment
         return rankBinding.root
